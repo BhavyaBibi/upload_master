@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<body>
+<div class="container">
+ <table class="table table-bordered">
+<tr>
+    <th>cover</th>
+    <th>id</th>
+<th>title</th>
+<th>author</th>
+<th>pdf</th>
+<th>delete</th>
+<th>view</th>
+    <th>edit</th>
+
+
+</tr>
+{% for i in bookie %}:
+	<tr>
+        <td>{% if i.cover %}<img src="{{i.cover.url}}" alt="{{i.title}}" style="width:100px">
+		{% else %}
+
+		<span class="text-muted">no cover </span>
+		{% endif %}
+
+		</td>
+        <td>{{i.id}}</td>
+	    <td>{{i.title}}</td>
+        <td>{{i.author}}</td>
+        <td><a href="{{i.pdf.url}}">Download</a></td>
+        <td><a href="{% url 'delete_book' i.pk %}" class="btn btn-danger">Delete</a></td>
+		<td><a href="{% url 'view_book' i.pk %}" class="btn-danger btn-lg">view</a></td>
+        <td><a href="{% url 'edit_book' i.pk %}" class="btn-danger btn-lg">edit</a></td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+</body>
+</html>
